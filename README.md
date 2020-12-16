@@ -31,15 +31,15 @@ Luigi flow overview:
 
 
 ### How can you use my tool?
-1. Clone the repo to your desktop
-2. In "tool_runner.py", change the input emails to your calendar and your gym's calendar (please read the below note while doing do).
+1. Clone the repo to your desktop.
+2. In "tool_runner.py", change the input emails to your calendar and your gym's calendar (please read the below note while doing so).
 3. CD into local repo & Run in CLI the following commands: 
 3. 1. "pipenv install" 
 3. 2. "pipenv shell"
-3. 3. "python calendar_syncronizer/tool_runner.py"
+3. 3. "python calendar_syncronizer/tool_runner.py". 
       At this stage a browser window will be opened and will ask your permission to access your Google Calendar. Approve it.
     
-At this point luigi should continue running it's task, until new events are automatically scheduled in your calendar. 
+At this point luigi should continue running it's workflow, until new events are automatically scheduled in your calendar. Congrats! 
 
 ** Importnat note:
    An obstable I encountered while working on this project is that the calendar owner must provide access for the api to clone & write events from his calendar.
@@ -49,9 +49,8 @@ At this point luigi should continue running it's task, until new events are auto
  
  ### Future improvements & Reflection
  
- * The "placements logic" could be a lot more sophiticated, and to leverage specific user constraints & ML (for example- by saving data 
-   about classes that the user attended or not, and by that to improve the placement mechanisem).
- * This idea can be expanded to any calendars syncrinization scenatio (meeting schedule, doctor apointments etc).
+ * There's a lot of room for creativity & sophistication in the "placements logic" part. For example, it could leverage specific user constraints, sync with friend's calendars, take into account the user's location & integrate ML (for example- by collecting data about classes that the user attended or not, leting him rate them etc).
+ * This idea can be expanded to additional calendars syncrinization scenario (meeting schedule, doctor apointments etc).
  
  
  ### Additional info
