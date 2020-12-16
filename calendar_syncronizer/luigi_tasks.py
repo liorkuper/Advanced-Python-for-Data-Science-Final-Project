@@ -1,5 +1,5 @@
 import luigi
-from luigi import ExternalTask, Parameter, Task, build, Parameter
+from luigi import Task, Parameter
 import pandas as pd
 import ast
 
@@ -9,6 +9,9 @@ from write_to_calendar import write_to_calendar
 
 
 class Get_My_Calendar_Data(Task):
+    # This task saves a csv file with my calendar as a DataFrame of 0's and 1's
+    # (0=free time, 1=busy)
+
     user_calendar_id = Parameter()
     path = 'data/My_Calendar_Data.csv'
 
@@ -23,8 +26,10 @@ class Get_My_Calendar_Data(Task):
 
 
 class Get_Gym_Calendar_Data(Task):
-    gym_calendar_id = Parameter()
+    # This task saves a csv file with my gym's calendar as a DataFrame of 0's and 1's
+    # (0=no classes, 1=class)
 
+    gym_calendar_id = Parameter()
     path = 'data/Gym_Calendar_Data.csv'
 
     def output(self):
@@ -38,6 +43,9 @@ class Get_Gym_Calendar_Data(Task):
 
 
 class Process_Data(Task):
+    # This task read the previously generates dataframes and returns
+    # the most relevant classes to be added in the user's calendar.
+
     user_calendar_id = Parameter()
     gym_calendar_id = Parameter()
 
@@ -70,6 +78,8 @@ class Process_Data(Task):
 
 
 class pushing_to_user_calendar(Task):
+    # This task pushes the relevant event to the user's calendar.
+
     user_calendar_id = Parameter()
     gym_calendar_id = Parameter()
 
