@@ -30,6 +30,13 @@ Luigi flow overview:
 ![alt text](https://github.com/csci-e-29/2020fa-final-project-liorkuper/blob/develop/design_Images/luigi_flow.png?raw=true)
 
 
+### Tools and techniques used:
+* Google Calendar API
+* Luigi workflow
+* Cookiecutter
+* Pandas
+* CSCI Utils
+
 ### How can you use my tool?
 1. Clone the repo to your desktop.
 2. In "tool_runner.py", change the input emails to your calendar and your gym's calendar (please read the below note while doing so).
