@@ -67,7 +67,7 @@ class Process_Data(Task):
             gym_calendar_mapping = pd.read_csv(in_file)
 
         potential_classes_matrix = potential_classes(my_calendar=my_calendar_mapping, gym_calendar=gym_calendar_mapping)
-        chosen_classes_to_schedule = chosen_classes(potential_classes_matrix, gym_calendar_mapping)
+        chosen_classes_to_schedule = chosen_classes(potential_classes_matrix)
         all_gym_classes = get_calendar_events(self.gym_calendar_id)
 
         with self.output()['chosen_classes_to_schedule'].open('w') as f:
