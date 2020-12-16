@@ -7,40 +7,40 @@ from calendars_processing import weekly_schedule_array, calendar_to_array, get_c
 from placements_logic import potential_classes, chosen_classes
 from write_to_calendar import write_to_calendar
 
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/calendar']
-
 
 class Get_My_Calendar_Data(Task):
-    calendar_id = 'lior69966996@gmail.com'
+    user_calendar_id = Parameter()
     path = 'data/My_Calendar_Data.csv'
 
     def output(self):
         return luigi.LocalTarget(self.path)
 
     def run(self):
-        my_busy_timeframes = get_busy_timeslots(self.calendar_id)[self.calendar_id]['busy']
+        my_busy_timeframes = get_busy_timeslots(self.user_calendar_id)[self.user_calendar_id]['busy']
         my_calendar_mapping = calendar_to_array(my_busy_timeframes)
         with self.output().open('w') as f:
             my_calendar_mapping.to_csv(f)
 
 
 class Get_Gym_Calendar_Data(Task):
-    calendar_id = 'vs1h2duqu6ku7m8vm3kp0ufsl0@group.calendar.google.com'
+    gym_calendar_id = Parameter()
+
     path = 'data/Gym_Calendar_Data.csv'
 
     def output(self):
         return luigi.LocalTarget(self.path)
 
     def run(self):
-        my_busy_timeframes = get_busy_timeslots(self.calendar_id)[self.calendar_id]['busy']
+        my_busy_timeframes = get_busy_timeslots(self.gym_calendar_id)[self.gym_calendar_id]['busy']
         my_calendar_mapping = calendar_to_array(my_busy_timeframes)
         with self.output().open('w') as f:
             my_calendar_mapping.to_csv(f)
 
 
 class Process_Data(Task):
-    gym_calendar_id = 'vs1h2duqu6ku7m8vm3kp0ufsl0@group.calendar.google.com'
+    user_calendar_id = Parameter()
+    gym_calendar_id = Parameter()
+
     path_chosen_classes_to_schedule = 'data/chosen_classes_to_schedule.txt'
     path_all_gym_classes = 'data/all_gym_classes.txt'
 
@@ -70,6 +70,8 @@ class Process_Data(Task):
 
 
 class pushing_to_user_calendar(Task):
+    user_calendar_id = Parameter()
+    gym_calendar_id = Parameter()
 
     def requires(self):
         return self.clone(Process_Data)
@@ -90,16 +92,3 @@ class pushing_to_user_calendar(Task):
                         end_time = k[2]
                         if start_time == timestamp:
                             write_to_calendar(title, start_time, end_time, timezone='Asia/Tel_Aviv')
-
-
-# build([Get_My_Calendar_Data()], local_scheduler=True)
-# build([Get_Gym_Calendar_Data()], local_scheduler=True)
-# build([Process_Data()], local_scheduler=True)
-
-
-
-# Tasks:
-# 1. generate my calendar data- DONE
-# 2. generate gym calendar data- DONE
-# 3. process data- DONE
-# 4. push results to google calendar
