@@ -1,5 +1,5 @@
 ![alt text](https://github.com/csci-e-29/2020fa-final-project-liorkuper/blob/develop/design_Images/upper_bound.png?raw=true)
-# Creating Calendars Synchronizer Using Python
+# Automatic Calendars Synchronizer
 ### Created by: Lior Kuper
 #### 2020FA-CSCI-E29 Advanced Python for Data Science
 ![alt text](https://github.com/csci-e-29/2020fa-final-project-liorkuper/blob/develop/design_Images/lower_bound.png?raw=true)
@@ -9,7 +9,7 @@
 calendar. 
 * The different time schedules of the institute where I train is hard to align with the rest
 of my responsibilities, and this manual work coordination takes a long time.
-* In this project I used Google Calendar's API (for pushing & pulling events) & Luigi workflow to generate a tool aims to automates the process of scheduling the optimal fitness classes to be taken. It does that by using both the user's personal 
+* In this project I used Google Calendar's API (for pushing & pulling events) & Luigi workflow to automate the process of scheduling the optimal fitness classes to be taken. It does that by using both the user's personal 
 and the studio's calendars, and automatically schedules the optimal classes in the user's calendar.
 
 <p align="center"><img width=50% src="https://github.com/csci-e-29/2020fa-final-project-liorkuper/blob/develop/design_Images/google_calendar_api_image.png"></p>
